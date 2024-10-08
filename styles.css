@@ -1,0 +1,338 @@
+/* Estilos básicos */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ffffff !important; /* Fundo branco */
+    color: #000000; /* Texto preto */
+}
+
+/* Modo noturno */
+.night-mode {
+    background-color: #121212; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+}
+
+/* Estilos da navbar */
+.nav {
+    background-color: rgba(240, 241, 245, 1); /* Fundo da navbar mais claro */
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais sutil */
+}
+
+.night-mode .nav {
+    background-color: rgba(48, 48, 48, 1); /* Fundo da navbar no modo noturno */
+}
+
+/* Estilos do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra mais sutil */
+    width: 80%;
+    position: relative;
+    animation: fadeIn 0.5s;
+}
+
+.night-mode .modal-content {
+    background-color: #333; /* Fundo escuro do modal */
+}
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Estilos do botão de fechar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    cursor: pointer;
+}
+
+/* Estilos das cartas */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra mais leve */
+}
+
+.night-mode .card {
+    background-color: #444; /* Fundo escuro do card */
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra leve ao passar o mouse */
+    transform: scale(1.02); /* Aumento leve */
+}
+
+/* Estilos de visibilidade */
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+.shrink {
+    animation: shrink 0.3s forwards;
+}
+
+@keyframes shrink {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.9); }
+}
+
+/* Estilos do botão de curso */
+.course-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007BFF; /* Azul profissional */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.night-mode .course-button {
+    background-color: #0056b3; /* Azul escuro no modo noturno */
+}
+
+.course-button:hover {
+    background-color: #0056b3; /* Azul mais forte ao passar o mouse */
+}
+
+/* Estilos do ícone */
+.icon {
+    margin-right: 10px;
+}
+
+/* Estilos do ícone do assistente */
+.assistant-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF; /* Azul profissional */
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    z-index: 1001;
+}
+
+.assistant-icon:hover {
+    background-color: #0056b3; /* Azul mais forte ao passar o mouse */
+}
+
+/* Estilos de botões */
+button {
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilos do container de tarefas */
+#tasks-container {
+    background-color: rgba(255, 255, 255, 1); /* Fundo branco total */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    margin: 20px;
+    padding: 20px;
+}
+
+.night-mode #tasks-container {
+    background-color: #444; /* Fundo escuro do container de tarefas */
+}
+
+#tasks-container h2 {
+    margin-bottom: 15px;
+}
+
+/* Estilos do link da tarefa */
+.task-link {
+    display: block;
+    margin: 10px 0;
+    padding: 12px;
+    background-color: #007BFF; /* Azul profissional */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.task-link:hover {
+    background-color: #0056b3; /* Azul mais forte ao passar o mouse */
+    transform: scale(1.02);
+}
+
+.task-link:focus {
+    outline: 2px solid #0056b3; /* Azul mais forte ao focar */
+}
+
+/* Estilos da sidebar */
+#sidebar {
+    position: fixed;
+    left: -200px; /* Começa fora da tela */
+    width: 200px;
+    height: 100%;
+    background-color: #f0f4ff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+#sidebar.active {
+    left: 0; /* Move para dentro da tela quando ativa */
+}
+
+#sidebar .profile-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+#sidebar .profile-button:hover {
+    background-color: #e0e0e0;
+}
+
+#sidebar .profile-icon {
+    margin-right: 10px;
+}
+
+/* Estilos da aba do perfil */
+.profile-container {
+    padding: 20px;
+}
+
+.profile-header {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+.profile-button {
+    display: block;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.profile-button:hover {
+    background-color: #0056b3; /* Azul mais forte ao passar o mouse */
+}
+
+/* Estilos da navbar */
+.nav {
+    background-color: #007BFF; /* Azul da primeira guia */
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais suave */
+    border-bottom: 2px solid #0056b3; /* Borda inferior mais escura */
+}
+
+/* Estilos do guia */
+.guide-section {
+    display: flex; /* Flexbox para o alinhamento */
+    justify-content: center; /* Centraliza os itens */
+    background-color: #007BFF; /* Azul da primeira guia */
+    padding: 5px 0; /* Diminui o padding vertical */
+    position: fixed; /* Fixa na parte inferior */
+    bottom: 0; /* Fixa ao fundo */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Acima de outros elementos */
+    border-top: 2px solid #0056b3; /* Borda superior mais escura */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+    border-radius: 10px 10px 0 0; /* Cantos arredondados na parte superior */
+}
+
+.guide-buttons {
+    display: flex; /* Flexbox para alinhar botões horizontalmente */
+    justify-content: space-between; /* Distribui os botões com espaço entre eles */
+    width: 80%; /* Define uma largura máxima para os botões */
+    padding: 0; /* Remove padding da lista */
+    margin: 0; /* Remove margin da lista */
+    list-style: none; /* Remove os marcadores da lista */
+}
+
+.guide-buttons li {
+    flex: 1; /* Permite que os itens cresçam igualmente */
+    display: flex; /* Flexbox para alinhamento central */
+    justify-content: center; /* Centraliza os botões */
+}
+
+.guide-button {
+    background: none; /* Remove fundo do botão */
+    color: white; /* Cor padrão do texto */
+    border: none; /* Remove borda */
+    cursor: pointer; /* Cursor de mão */
+    font-size: 20px; /* Tamanho da fonte */
+    text-align: center; /* Centraliza texto */
+    transition: color 0.3s, transform 0.3s; /* Transição suave */
+    padding: 10px; /* Espaçamento interno */
+}
+
+.guide-button:hover {
+    color: #d1e8ff; /* Azul claro ao passar o mouse */
+    transform: translateY(-2px); /* Leve movimento ao passar o mouse */
+}
+
+/* Estilos do botão de adicionar */
+.add-button {
+    position: relative; /* Para que possamos usar o pseudo-elemento */
+    display: flex; /* Centraliza o botão "+" */
+    align-items: center; /* Alinha verticalmente */
+}
+
+/* Estilos da capa do vídeo */
+.cover-image {
+    width: 100px; /* Defina a largura desejada */
+    height: 100px; /* A altura igual à largura para manter o formato quadrado */
+    border-radius: 8px; /* Cantos arredondados, se desejar */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    transition: transform 0.3s;
+}
+
+.add {
+    background-color: white; /* Fundo branco para o botão "+" */
+    color: #007BFF; /* Cor do ícone */
+    border-radius: 50%; /* Botão redondo */
+    width: 56px; /* Largura do botão */
+    height: 56px; /* Altura do botão */
+    display: flex; /* Flexbox para centralizar ícone */
+    align-items: center; /* Alinha o ícone verticalmente */
+    justify-content: center; /* Centraliza o ícone horizontalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve */
+    border: none; /* Remove borda */
+    margin: 0 15px; /* Distância do botão "+" em relação aos outros */
+    z-index: 1; /* Garante que o botão "+" esteja acima */
+}

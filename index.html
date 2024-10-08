@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogTech Academy - Disciplinas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gradient-to-r from-blue-400 to-blue-600 relative">
+
+    <nav class="bg-custom-blue p-4 text-white shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">LogTech Academy</h1>
+            <div class="space-x-4">
+                <button onclick="toggleNightMode()" class="hover:text-blue-200 transition">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button onclick="toggleCourses()" class="hover:text-blue-200 transition">Meus Cursos</button>
+                <div id="course-options" class="hidden absolute bg-white shadow-lg rounded mt-2">
+                    <button onclick="openCourse('excel')" class="course-button flex items-center bg-custom-blue text-white px-4 py-2 rounded transition hover:bg-blue-600">
+                        <i class="fab fa-microsoft-excel text-white mr-2 fa-lg"></i> Excel
+                    </button>
+                    <button onclick="openCourse('word')" class="course-button flex items-center bg-custom-blue text-white px-4 py-2 rounded transition hover:bg-blue-600">
+                        <i class="fab fa-microsoft-word text-white mr-2 fa-lg"></i> Word
+                    </button>
+                </div>
+                <a href="https://www.arvore.com.br/" class="hover:text-blue-200 transition">Árvore de Livros</a>
+                <button onclick="openIA()" class="hover:text-blue-200 transition">IA</button>
+                <button id="tasks-button" onclick="toggleTasks()" class="hover:text-blue-200 transition">Tarefas</button>
+                <span id="student-name" class="ml-4 font-semibold"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex">
+        <div id="sidebar" class="bg-white shadow-lg rounded-lg p-4 w-64 hidden transition-transform duration-300">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-500 rounded-full"></div>
+                <span class="text-lg font-bold">Perfil</span>
+            </div>
+            <ul class="mt-4">
+                <li>
+                    <button onclick="editProfile()" class="w-full text-left p-2 hover:bg-blue-100">Editar Perfil</button>
+                </li>
+                <li>
+                    <button onclick="openFeed()" class="w-full text-left p-2 hover:bg-blue-100">Feed</button>
+                </li>
+                <li>
+                    <button onclick="openCamera()" class="w-full text-left p-2 hover:bg-blue-100">Câmera</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex-grow p-6">
+            <div id="tasks-container" class="bg-white shadow-lg rounded-lg p-6 mt-4 hidden">
+                <h2 class="text-2xl font-bold mb-4">Tarefas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2">
+                    <a href="https://mept.org.mz/wp-content/uploads/2022/05/Matematica-9a-classe.pdf" class="task-link" target="_blank">
+                        <span class="icon">📐</span> Matemática
+                    </a>
+                    <a href="https://www.cp2.g12.br/blog/humaitaii/files/2020/03/8%C2%BA-ano-Apostila-Geografia-8%C2%BA-ano_compressed.pdf" class="task-link" target="_blank">
+                        <span class="icon">🌍</span> Geografia
+                    </a>
+                    <a href="https://www.uece.br/wp-content/uploads/sites/3/2019/08/apostila_ingles_basico.pdf" class="task-link" target="_blank">
+                        <span class="icon">📖</span> Inglês
+                    </a>
+                    <a href="https://esesp.es.gov.br/Media/esesp/Apostilas/Apostila%20Completa%20-%20Inform%C3%A1tica%20B%C3%A1sica%2032h.pdf" class="task-link" target="_blank">
+                        <span class="icon">💻</span> Informática
+                    </a>
+                    <a href="https://sescacre.com.br/wp-content/uploads/2020/05/200501p2.pdf" class="task-link" target="_blank">
+                        <span class="icon">✍️</span> Português
+                    </a>
+                    <a href="https://jucienebertoldo.wordpress.com/wp-content/uploads/2017/09/enemem100dias-apostila-historia.pdf" class="task-link" target="_blank">
+                        <span class="icon">📜</span> História
+                    </a>
+                    <a href="https://www.seduc.ce.gov.br/wp-content/uploads/sites/37/2019/03/redacao_preparatorio_enem.pdf" class="task-link" target="_blank">
+                        <span class="icon">📝</span> Redação
+                    </a>
+                    <a href="https://fcjp.edu.br/pdf/20150619104130fc.pdf" class="task-link" target="_blank">
+                        <span class="icon">🔬</span> Ciências
+                    </a>
+                
+        </div>
+    </div>
+
+    <script>
+        function openIA() {
+            window.open('https://poe.com/chat/3lsp8w6jukj8lw2jbec', '_blank');
+        }
+    </script>
+
+    <main class="container mx-auto mt-8">
+        <h2 class="text-3xl font-bold text-custom-blue mb-4">Disciplinas</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <button onclick="showContent('matematica')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-calculator fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Matemática</h3>
+            </button>
+            <button onclick="showContent('geografia')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-globe fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Geografia</h3>
+            </button>
+            <button onclick="showContent('ingles')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-language fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Inglês</h3>
+            </button>
+            <button onclick="showContent('informatica')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-laptop fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Informática</h3>
+            </button>
+            <button onclick="showContent('portugues')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-book fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Português</h3>
+            </button>
+            <button onclick="showContent('historia')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-history fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">História</h3>
+            </button>
+            <button onclick="showContent('redacao')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-pencil-alt fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Redação</h3>
+            </button>
+            <button onclick="showContent('ciencias')" class="bg-white rounded-lg card p-4 shadow-md text-center transition transform hover:scale-105 hover:shadow-lg">
+                <i class="fas fa-flask fa-2x text-custom-blue"></i>
+                <h3 class="font-bold mt-2">Ciências</h3>
+            </button>
+        </div>
+
+        <section id="matematica" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Matemática</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: MAT</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+        
+            <!-- Seção do vídeo -->
+            <div id="video-matematica" class="mt-4 video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/GLYEff_w-dE" 
+                    title="Vídeo Matemática" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    <div id="video-matematica" class="mt-4 video-container">
+                </iframe>
+            </div>
+            
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Escreva 20 Números Inteiros e desenvolva contas utilizando eles, 10 contas</li>
+                    <li>Frações: Resolva as frações que foram passadas no vídeo acima.</li>
+                    <li>Geometria: escreva o que você entendeu.</li>
+                </ul>
+            </article>
+        </section>
+        <section id="geografia" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Geografia</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: GEO</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Mapas e Escalas</li>
+                    <li>Climas e Biomas</li>
+                    <li>Geopolítica</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="ingles" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Inglês</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: ING</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Vocabulário</li>
+                    <li>Gramática</li>
+                    <li>Compreensão Oral</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="informatica" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Informática</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: INF</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Conceitos Básicos</li>
+                    <li>Sistemas Operacionais</li>
+                    <li>Segurança Digital</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="portugues" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Português</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: POR</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Leitura e Interpretação</li>
+                    <li>Produção Textual</li>
+                    <li>Gramática</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="historia" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">História</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: HIS</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Períodos Históricos</li>
+                    <li>Eventos Significativos</li>
+                    <li>Contexto Histórico</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="redacao" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Redação</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: RED</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Estrutura da Redação</li>
+                    <li>Gêneros Textuais</li>
+                    <li>Coesão e Coerência</li>
+                </ul>
+            </article>
+        </section>
+        
+        <section id="ciencias" class="bg-white rounded-lg shadow-md p-6 hidden">
+            <header>
+                <h2 class="text-3xl font-bold text-custom-blue">Ciências</h2>
+                <p class="text-gray-600 mb-4">Professor: Silva | Código do Curso: CIE</p>
+            </header>
+            <p>Descrição da disciplina e objetivos de aprendizagem.</p>
+            <button onclick="openAssessment()" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">Iniciar Avaliação</button>
+            <article class="mt-6">
+                <h3 class="font-bold text-lg mb-4">Atividades</h3>
+                <ul class="list-disc pl-5">
+                    <li>Corpo Humano</li>
+                    <li>Ecologia</li>
+                    <li>Química Básica</li>
+                </ul>
+            </article>
+        </section>        
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <div id="response"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <div id="assistant-icon" class="fixed bottom-4 right-4 cursor-pointer" onclick="toggleAssistant()">
+        <i class="fas fa-comments fa-2x text-custom-blue"></i>
+    </div>
+    
+    <div class="assistant-icon" onclick="openAssistant()">
+        <i class="fas fa-comments"></i>    
+        </div>
+    </div> 
+    <div id="guide" class="guide-section">
+        <ul class="guide-buttons">
+            <li>
+                <button class="guide-button" onclick="openHome()">
+                    <i class="fas fa-home"></i> <!-- Ícone da casinha -->
+                </button>
+            </li>
+            <li>
+                <button class="guide-button" onclick="openCamera()">
+                    <i class="fas fa-camera"></i> <!-- Ícone da câmera -->
+                </button>
+            </li>
+            <li class="add-button">
+                <button class="guide-button add" onclick="addAction()">
+                    <i class="fas fa-plus"></i> <!-- Ícone de adicionar -->
+                </button>
+            </li>
+            <li>
+                <button class="guide-button search" onclick="openSearch()">
+                    <i class="fas fa-search"></i> <!-- Ícone de pesquisa -->
+                </button>
+            </li>
+            <li>
+                <button class="guide-button" onclick="toggleSidebar()">
+                    <i class="fas fa-user"></i> <!-- Ícone do perfil -->
+                </button>
+            </li>
+        </ul>
+    </div>
+    
+    </html>
+    </body>
